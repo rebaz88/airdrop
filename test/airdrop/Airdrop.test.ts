@@ -6,7 +6,7 @@ import { Airdrop__factory, AirdropToken__factory } from '../../typechain-types'
 
 describe('Airdrop', () => {
   it('Full Cycle', async () => {
-    const [signer, unEligible] = await ethers.getSigners()
+    const [signer, signer2, signer3] = await ethers.getSigners()
 
     const token = await new AirdropToken__factory(signer).deploy()
 
@@ -32,12 +32,12 @@ describe('Airdrop', () => {
       'Airdrop: Address has already claimed!'
     )
 
-    await expect(airdrop.connect(unEligible).claim()).to.be.revertedWith(
+    await expect(airdrop.connect(signer3).claim()).to.be.revertedWith(
       'Airdrop: Address is not eligible for airdrop'
     )
 
-    expect(await airdrop.claimed(unEligible.address)).to.eq(false)
+    expect(await airdrop.claimed(signer3.address)).to.eq(false)
 
-    expect(await airdrop.isEligible(unEligible.address)).to.eq(false)
+    expect(await airdrop.isEligible(signer3.address)).to.eq(false)
   })
 })
