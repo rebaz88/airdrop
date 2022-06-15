@@ -13,7 +13,7 @@ in the root directory run
 yarn build
 ```
 
-to build the artificats and generate contracts abi
+this will build the artificats and generate contracts abi then run
 
 ```bash
 yarn test
@@ -25,11 +25,20 @@ To test contracts
 ### Deploy(using hardhat)
 npx hardhat run --network localhost scripts/deploy.ts
 
+copy the contract addresses
+
 ### Running the dapp(dev)
 ```bash
 cd ./app
+```
+
+copy the deployed contract address to .env file then
+
+```bash
 yarn
 yarn dev
 ```
+
+If you deploy the contract several times, you have to update the .env file and restart the dev server
 
 
