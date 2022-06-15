@@ -15,18 +15,19 @@ const App = {
     try {
       this.token = new web3.eth.Contract(
         attToken.abi,
-        '0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82'
+        '0xc351628EB244ec633d5f21fBD6621e1a683B1181'
       )
 
       this.meta = new web3.eth.Contract(
         attMeta.abi,
-        '0x9A676e781A523b5d0C0e43731313A708CB607508'
+        '0xFD471836031dc5108809D173A067e8486B9047A3'
       )
 
       // get accounts
       const accounts = await web3.eth.getAccounts()
       this.account = accounts[0]
       this.refreshBalance()
+      this.claimableAmount()
     } catch (error) {
       console.error('Could not connect to contract or chain.')
     }
@@ -50,8 +51,21 @@ const App = {
 
       this.setStatus('Transaction complete!')
       this.refreshBalance()
+      this.claimableAmount()
     } catch (e) {
       this.setStatus('Transaction failed!')
+      console.error(e)
+    }
+  },
+
+  claimableAmount: async function () {
+    const { claimableAmount } = this.meta.methods
+
+    try {
+      const amount = await claimableAmount().call()
+      this.setClaimableAmount(amount)
+    } catch (e) {
+      this.setStatus('Unable to fetch claimable amount!')
       console.error(e)
     }
   },
@@ -59,6 +73,16 @@ const App = {
   setStatus: function (message) {
     const status = document.getElementById('status')
     status.innerHTML = message
+  },
+
+  setClaimableAmount: function (amount) {
+    const status = document.getElementById('claimableAmount')
+
+    if (amount > 0) {
+      status.innerHTML = `Your claimable amount is <strong>${amount}</strong> ATT`
+    } else {
+      status.innerHTML = ''
+    }
   }
 }
 

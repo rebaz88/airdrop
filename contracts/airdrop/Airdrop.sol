@@ -57,4 +57,16 @@ contract Airdrop {
     {
         return eligibleAddresses[claimer] > 0;
     }
+
+    function claimableAmount() public view returns(uint) {
+        if (! hasNotClaimed(msg.sender)) {
+            return 0;
+        }
+
+        if (! isEligible(msg.sender)) {
+            return 0;
+        }
+
+        return eligibleAddresses[msg.sender];
+    }
 }

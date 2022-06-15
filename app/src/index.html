@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MetaCoin | Truffle Webpack Demo w/ Frontend</title>
+    <title>Airdrop | Example</title>
   </head>
   <style>
-    input {
-      display: block;
-      margin-bottom: 12px;
+    #claimableAmount {
+      color: green;
     }
   </style>
   <body>
     <h1>ATT Airdrop</h1>
-    <p>You have <strong class="balance">loading...</strong> ATT</p>
+    <p>Your balance is <strong class="balance">loading...</strong> ATT</p>
 
+    <h2 id="claimableAmount"></h2>
     <button onclick="App.refreshBalance()">Refresh Balance</button>
-
     <button onclick="App.claim()">Claim</button>
-
     <p id="status"></p>
+
     <script src="index.js"></script>
   </body>
 </html>

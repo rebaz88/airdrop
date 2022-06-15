@@ -16,7 +16,8 @@ async function main() {
   console.log('Token deployed to:', token.address)
   console.log('Airdrop deployed to:', airdrop.address)
 
-  await token.transfer(airdrop.address, parseEther('10'))
+  await token.transfer(deployer.address, parseEther('1'))
+  await token.transfer(airdrop.address, parseEther('8'))
 }
 
 main()
