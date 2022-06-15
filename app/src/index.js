@@ -11,16 +11,15 @@ const App = {
 
   start: async function () {
     const { web3 } = this
-
     try {
       this.token = new web3.eth.Contract(
         attToken.abi,
-        '0xc351628EB244ec633d5f21fBD6621e1a683B1181'
+        process.env.TOKEN_CONTRACT_ADDRESS
       )
 
       this.meta = new web3.eth.Contract(
         attMeta.abi,
-        '0xFD471836031dc5108809D173A067e8486B9047A3'
+        process.env.AIRDROP_CONTRACT_ADDRESS
       )
 
       // get accounts
