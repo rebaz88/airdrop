@@ -1,3 +1,4 @@
+import { ethers } from 'ethers'
 import Web3 from 'web3'
 
 import attMeta from '../../artifacts/contracts/airdrop/Airdrop.sol/Airdrop.json'
@@ -37,7 +38,7 @@ const App = {
     const balance = await balanceOf(this.account).call()
 
     const balanceElement = document.getElementsByClassName('balance')[0]
-    balanceElement.innerHTML = balance
+    balanceElement.innerHTML = ethers.utils.formatUnits(balance, 18)
   },
 
   claim: async function () {

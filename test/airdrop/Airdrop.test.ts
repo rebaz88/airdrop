@@ -19,12 +19,11 @@ describe('Airdrop', () => {
     expect(await airdrop.hasNotClaimed(signer.address)).to.eq(true)
     expect(await airdrop.isEligible(signer.address)).to.eq(true)
     expect(await airdrop.claimableAmount()).to.eq(10)
-    
 
     await expect(() => airdrop.claim()).to.changeTokenBalances(
       token,
       [airdrop, signer],
-      [-10, 10]
+      [parseEther('-10'), parseEther('10')]
     )
 
     expect(await airdrop.claimed(signer.address)).to.eq(true)

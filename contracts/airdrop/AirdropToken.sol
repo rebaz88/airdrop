@@ -5,6 +5,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract AirdropToken is ERC20 {
     constructor() ERC20("AirdropToken", "ATT") {
-        _mint(msg.sender, 10 * 10**decimals());
+        _mint(msg.sender, 1000 * 10**decimals());
     }
 }

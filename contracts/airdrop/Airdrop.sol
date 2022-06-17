@@ -37,7 +37,7 @@ contract Airdrop {
 
         claimed[msg.sender] = true;
 
-        IERC20(token).safeTransfer(msg.sender, eligibleAddresses[msg.sender]);
+        IERC20(token).safeTransfer(msg.sender, eligibleAddresses[msg.sender] * 10**18);
 
         emit Claim(msg.sender);
     }
